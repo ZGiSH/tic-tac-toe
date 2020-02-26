@@ -58,6 +58,29 @@ button:focus {
 	margin-top: 11vh;
 }
 
+#win-screen {
+	display: flex;
+	background-color: black;
+	grid-row: 2 / 3;
+	grid-column: 2 / 3;
+	height: 65vh;
+	width: 65vh;
+	border-radius: 25px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font: 36px track;
+	color: white;
+}
+
+#win-screen:hover {
+	cursor: pointer;
+}
+
+#win-screen > p {
+	font-size: 22px;
+}
+
 #menu-container {
 	display: grid;
 	background-color: black;
@@ -130,25 +153,25 @@ button:focus {
 	margin-top: 4vh;
 }
 
-#timer-menu {
+#cpu-menu {
 	grid-column: 2 / 3;
 	grid-row: 3 / 4;
 	margin-top: 5vh;
 	margin-left: 5vw;
 }
 
-#timer-menu > label {
+#cpu-menu > label {
 	float: left;
-	margin-left: 3vw;
+	margin-left: 4vw;
 }
 
-#timer-menu > select {
+#cpu-menu > select {
 	display: flex;
 	margin-left: auto;
 	height: 3vh;
 	width: 6vw;
 	border-radius: 15px;
-	padding: 0 0 0 35px;
+	padding: 0 0 0 25px;
 }
 
 #start-menu {
@@ -191,10 +214,5 @@ button:focus {
 	grid-row: 3 / 4;
 	grid-column: 2 / 3;
 	margin-top: 1vh;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.score {
-	padding-left: 10px;
+	justify-content: space-evenly;
 }

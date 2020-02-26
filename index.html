@@ -2,24 +2,28 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/main.css">
   <title>Tic-Tac-Toe</title>
 </head>
 <body>
 	<div id='container'>
 		<div id='header'><h1>TIC-TAC-TOE</h1></div>
+		<div id='win-screen' style='display: none'>
+			<h2></h2>
+			<p>Play Again?</p>
+		</div>
 		<div id='game-container' style='display: none'>
 			<div id='game-board'>
-				<div class='cell'></div>
-				<div class='cell'></div>
-				<div class='cell'></div>
-				<div class='cell'></div>
-				<div class='cell'></div>
-				<div class='cell'></div>
-				<div class='cell'></div>
-				<div class='cell'></div>
-				<div class='cell'></div>
+				<div class='cell unchecked'></div>
+				<div class='cell unchecked'></div>
+				<div class='cell unchecked'></div>
+				<div class='cell unchecked'></div>
+				<div class='cell unchecked'></div>
+				<div class='cell unchecked'></div>
+				<div class='cell unchecked'></div>
+				<div class='cell unchecked'></div>
+				<div class='cell unchecked'></div>
 			</div>
 		</div>
 		<div id='menu-container'>
@@ -31,12 +35,12 @@
 				<label for='player2-name'>PLAYER 2</label>
 				<input type='text' id='player2-name' placeholder='P2 NAME'></input>
 			</div>
-			<div id='timer-menu'>
-				<label for='input-timer' id='timer-label'>TIMER</label>
-				<select id='input-timer'>
-				  <option value="1">1:00</option>
-				  <option value="0.5">0:30</option>
-				  <option value="0.15">0:15</option>
+			<div id='cpu-menu'>
+				<label for='input-cpu' id='cpu-label'>CPU</label>
+				<select id='input-cpu'>
+				  <option value="none">NONE</option>
+				  <option value="easy">EASY</option>
+				  <option value="hard">HARD</option>
 				</select>
 			</div>
 			<div id='start-menu'>
@@ -46,6 +50,6 @@
 		<div id='stats'>
 		</div>
 	</div>
-<script src='script.js'></script>
+<script src='scripts/script.js'></script>
 </body>
 </html>
