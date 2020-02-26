@@ -64,8 +64,15 @@ header.addEventListener('click', function() {
 
 	resetGame()
 	unfade(menu);
+
 	currentPlayer = 'X'
 	activeGame = false
+	cpuSelect.value = 'none'
+	pOneInput.value = ''
+	pTwoInput.value = ''
+	pOneInput.placeholder = 'P1 NAME'
+	pTwoInput.placeholder = 'P2 NAME'
+	pTwoInput.disabled = false
 	header.innerHTML = '<h1>TIC-TAC-TOE</h1>'
 	}
 })
@@ -112,7 +119,7 @@ cellElements.forEach(cell => {
 				tieState();
 			}
 
-			placeMark();
+			switchPlayer();
 
 			if (activeCPU == true && currentPlayer == 'O') {
 				cpuTurn = true;
@@ -134,7 +141,7 @@ cellElements.forEach(cell => {
 	})
 })
 
-function placeMark() {
+function switchPlayer() {
 	if (currentPlayer == 'X') {
 		currentPlayer = 'O'
 	} else {
@@ -199,6 +206,7 @@ function tieState() {
 
 	fade(game);
 	resetGame();
+	switchPlayer();
 
 	winScreen.style.display = 'flex'
 }
@@ -211,13 +219,7 @@ function resetGame() {
 		cell.classList.remove('checked')
 		cell.classList.add('unchecked')
 	})
-
-	pOneInput.value = ''
-	pTwoInput.value = ''
-	pOneInput.placeholder = 'P1 NAME'
-	pTwoInput.placeholder = 'P2 NAME'
-	pTwoInput.disabled = false
-	cpuSelect.value = 'none'
+	cpuTurn = false
 }
 
 function logicCPU() {
@@ -230,7 +232,7 @@ function logicCPU() {
 		setTimeout(function () {
 			currentChoice.click();
 			cpuTurn = false;
-		}, 1000)
+		}, 500)
 	}
 }
 
