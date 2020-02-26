@@ -1,0 +1,200 @@
+* {
+	font-family: track;
+}
+
+body {
+	background-color: white
+}
+
+h1:hover {
+	cursor: pointer;
+}
+
+input {
+	height: 3vh;
+	width: 18vw;
+	border-radius: 15px;
+	padding: 0 1vh 0 1vh;
+}
+
+input:focus {
+	outline: none;
+}
+
+label {
+	display: inline-block;
+	font: 22px track;
+	color: white;
+	margin-bottom: 1vh;
+}
+
+select:hover {
+	cursor: pointer;
+}
+
+select:focus {
+	outline: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button:focus {
+	outline: none;
+}
+
+#container {
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	grid-template-columns: repeat(3, 1fr);
+	height: 100vh;
+}
+
+#header {
+	font: 44px track black;
+	grid-row: 1 / 2;
+	grid-column: 2 / 3;
+	margin-top: 11vh;
+}
+
+#menu-container {
+	display: grid;
+	background-color: black;
+	grid-row: 2 / 3;
+	grid-column: 2 / 3;
+	height: 65vh;
+	width: 65vh;
+	border-radius: 25px;
+	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
+}
+
+#game-container {
+	display: flex;
+	grid-row: 2 / 3;
+	grid-column: 2 / 3;
+	height: 65vh;
+	width: 65vh;
+	border-radius: 25px;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+}
+
+#game-board {
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	grid-template-columns: repeat(3,1fr);
+	height: 50vh;
+	width: 50vh;
+}
+
+#game-board > div {
+	border: 2px solid white;
+}
+
+#game-board div:first-child,
+#game-board div:nth-child(2),
+#game-board div:nth-child(3) {
+	border-top: none;
+}
+
+#game-board div:first-child,
+#game-board div:nth-child(4),
+#game-board div:nth-child(7) {
+	border-left: none;
+}
+
+#game-board div:nth-child(7),
+#game-board div:nth-child(8),
+#game-board div:nth-child(9) {
+	border-bottom: none;
+}
+
+#game-board div:nth-child(3),
+#game-board div:nth-child(6),
+#game-board div:nth-child(9) {
+	border-right: none;
+}
+
+#player1-menu {
+	grid-column: 2 / 3;
+	grid-row: 1 / 2;
+	margin-top: 13vh;
+}
+
+#player2-menu {
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
+	margin-top: 4vh;
+}
+
+#timer-menu {
+	grid-column: 2 / 3;
+	grid-row: 3 / 4;
+	margin-top: 5vh;
+	margin-left: 5vw;
+}
+
+#timer-menu > label {
+	float: left;
+	margin-left: 3vw;
+}
+
+#timer-menu > select {
+	display: flex;
+	margin-left: auto;
+	height: 3vh;
+	width: 6vw;
+	border-radius: 15px;
+	padding: 0 0 0 35px;
+}
+
+#start-menu {
+	margin-top: -4vh;
+	margin-left: auto;
+	grid-column: 2 / 3;
+	grid-row: 4 / 5;
+}
+
+#start-menu > button {
+	height: 3vh;
+	width: 10vw;
+	border-radius: 10px;
+	background: white;
+}
+
+.cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-size: 25px;
+	font-family: track;
+	color: #999;
+}
+
+.cell:hover {
+	cursor: pointer;
+}
+
+.checked {
+	color: white;
+	transition: 0.25s;
+	font-size: 50px;
+}
+
+#stats {
+	display: flex;
+	font: 22px track black;
+	grid-row: 3 / 4;
+	grid-column: 2 / 3;
+	margin-top: 1vh;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.score {
+	padding-left: 10px;
+}

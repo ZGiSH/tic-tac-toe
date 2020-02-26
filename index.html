@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="main.css">
+  <title>Tic-Tac-Toe</title>
+</head>
+<body>
+	<div id='container'>
+		<div id='header'><h1>TIC-TAC-TOE</h1></div>
+		<div id='game-container' style='display: none'>
+			<div id='game-board'>
+				<div class='cell'></div>
+				<div class='cell'></div>
+				<div class='cell'></div>
+				<div class='cell'></div>
+				<div class='cell'></div>
+				<div class='cell'></div>
+				<div class='cell'></div>
+				<div class='cell'></div>
+				<div class='cell'></div>
+			</div>
+		</div>
+		<div id='menu-container'>
+			<div id='player1-menu'>
+				<label for='player1-name'>PLAYER 1</label>
+				<input type='text' id='player1-name' placeholder='P1 NAME'></input>
+			</div>
+			<div id='player2-menu'>
+				<label for='player2-name'>PLAYER 2</label>
+				<input type='text' id='player2-name' placeholder='P2 NAME'></input>
+			</div>
+			<div id='timer-menu'>
+				<label for='input-timer' id='timer-label'>TIMER</label>
+				<select id='input-timer'>
+				  <option value="1">1:00</option>
+				  <option value="0.5">0:30</option>
+				  <option value="0.15">0:15</option>
+				</select>
+			</div>
+			<div id='start-menu'>
+				<button id='start-btn'>LET'S PLAY</button>
+			</div>
+		</div>
+		<div id='stats'>
+		</div>
+	</div>
+<script src='script.js'></script>
+</body>
+</html>
