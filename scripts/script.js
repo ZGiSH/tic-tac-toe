@@ -21,6 +21,8 @@ let player1
 let player2
 let score = 0
 
+let gameState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
 const winCriteria = [
 	[0, 1, 2],
 	[3, 4, 5],
@@ -32,8 +34,8 @@ const winCriteria = [
 	[2, 4, 6]
 ];
 
-const playerFactory = (name, side) => {
-	return { name, side, score };
+const playerFactory = (name) => {
+	return { name, score };
 };
 
 winScreen.addEventListener('click', function() {
@@ -83,8 +85,8 @@ btn.addEventListener('click', function() {
 		if (!activeGame) {
 			const pOneName = document.querySelector('#player1-name').value
 			const pTwoName = document.querySelector('#player2-name').value
-			player1 = playerFactory(pOneName, 'X');
-			player2 = playerFactory(pTwoName, 'O');
+			player1 = playerFactory(pOneName);
+			player2 = playerFactory(pTwoName);
 
 			game.style.display = 'grid'
 			activeGame = true
@@ -112,8 +114,9 @@ cellElements.forEach(cell => {
 			this.classList.add(currentPlayer)
 			this.classList.add('checked')
 			this.classList.remove('unchecked')
+			gameState[this.dataset.key] = currentPlayer
 
-			if (checkWin(currentPlayer)) {
+			if (checkWin(gameState, currentPlayer)) {
 				winState();
 			} else if (checkTie()) {
 				tieState();
@@ -169,10 +172,10 @@ function displayScore() {
 	stats.appendChild(p2);
 }
 
-function checkWin(currentClass) {
+function checkWin(board, player) {
 	return winCriteria.some(combination => {
 		return combination.every(index => {
-			return cellElements[index].classList.contains(currentClass)
+			return board[index] == player;
 		})
 	})
 }
@@ -218,6 +221,7 @@ function resetGame() {
 		cell.classList.remove('O')
 		cell.classList.remove('checked')
 		cell.classList.add('unchecked')
+		gameState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 	})
 	cpuTurn = false
 }
@@ -234,11 +238,86 @@ function logicCPU() {
 			cpuTurn = false;
 		}, 500)
 	}
+
+	if (cpuSelect.value == 'hard') {
+		function aiPlay() {
+		   
+		    function emptyCells(board) {
+		        return board.filter(cell => cell !== 'O' && cell !== 'X');
+		    }
+
+		    let bestPlay = minimax(gameState, 'O').index;
+		        
+		    function minimax(newBoard, player) {
+		        let human = 'X';
+		        let ai = 'O';
+
+		        let availableSpots = emptyCells(newBoard);
+		    
+		        if (checkWin(newBoard, human)) {
+		            return { score: -10 };
+		        }
+		        else if (checkWin(newBoard, ai)) {
+		            return { score: 10 }
+		        }
+		        else if (availableSpots.length === 0) {
+		            return { score: 0 };
+		        }
+
+		        let moves = [];
+		        for (let i = 0; i < availableSpots.length; i++) {
+		            let move = {};
+		            move.index = newBoard[availableSpots[i]];
+		            newBoard[availableSpots[i]] = player;
+		    
+		            if (player === ai) {
+		                let result = minimax(newBoard, human);
+		                move.score = result.score;
+		            }
+		            else {
+		                let result = minimax(newBoard, ai);
+		                move.score = result.score;
+		            }
+		            newBoard[availableSpots[i]] = move.index;
+		            moves.push(move);
+		        }
+		    
+		            let bestMove;
+		            if (player === ai) {
+		                let bestScore = -Infinity;
+		                for (let i = 0; i < moves.length; i++) {
+		                    if (moves[i].score > bestScore) {
+		                        bestScore = moves[i].score;
+		                        bestMove = i;
+		                    }
+		                }
+		            }
+		            else {
+		                let bestScore = Infinity;
+		                for (let i = 0; i < moves.length; i++) {
+		                    if (moves[i].score < bestScore) {
+		                        bestScore = moves[i].score;
+		                        bestMove = i;
+		                    }
+		                }
+		            }
+		            return moves[bestMove];
+		    }
+		    return bestPlay;
+		}
+
+		currentChoice = cellElements[aiPlay()];
+		currentChoice.innerHTML = currentPlayer
+		setTimeout(function () {
+			currentChoice.click();
+			cpuTurn = false;
+		}, 500)
+	}
 }
 
 
 function fade(element) {
-    var op = 1;  // initial opacity
+    var op = 1;
     var timer = setInterval(function () {
         if (op <= 0.1){
             clearInterval(timer);
@@ -251,7 +330,7 @@ function fade(element) {
 }
 
 function unfade(element) {
-    var op = 0.1;  // initial opacity
+    var op = 0.1;
     element.style.display = 'grid';
     var timer = setInterval(function () {
         if (op >= 1){
@@ -262,4 +341,3 @@ function unfade(element) {
         op += op * 0.1;
     }, 10);
 }
-
